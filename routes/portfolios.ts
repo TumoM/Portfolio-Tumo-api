@@ -16,7 +16,7 @@ router.get('/:id', getPortfolioById)
 router.post('', checkJWT, createPortfolio)
 
 // Update new portfolio
-router.patch('/:id', updatePortfolio)
+router.patch('/:id', checkJWT, updatePortfolio)
 
 
 

@@ -1,35 +1,41 @@
 
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const portfolioSchema = new Schema({
     title: { 
         type: String, 
         required: true, 
-        maxlength: 128 
+        maxLength: 128,
+        minLength: 1 
         },
     company: { 
         type: String, 
         required: true, 
-        maxlength: 64
+        maxLength: 64,
+        minLength: 1
         },
     companyWebsite: { 
         type: String, 
         required: true, 
-        maxlength: 128
+        maxLength: 128,
+        minLength: 1
         },
     location: { 
         type: String, 
-        required: true 
+        required: true ,
+        minLength: 1
         },
     jobTitle: { 
         type: String, 
-        required: true 
+        required: true ,
+        minLength: 1
         },
     description: {
         type: String, 
-        required: true 
+        required: true,
+        minLength: 1 
         },
     startDate: {
         type: Date, 

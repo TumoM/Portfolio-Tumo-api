@@ -1,6 +1,6 @@
 
-const config = require('../config/dev')
-const mongoose = require('mongoose');
+import config from'../config/dev';
+import mongoose from 'mongoose';
 require('./models/portfolio');
 
 exports.connect = () => {

@@ -37,7 +37,7 @@ exports.createPortfolio = async (req:any, res:Response) => {
     const { body, params: {id}} = req;
 
     try{
-      const updatedPortfolio = await Portfolio.findOneAndUpdate({_id:id}, body, {new: true, runValidator: true});
+      const updatedPortfolio = await Portfolio.findOneAndUpdate({_id: id}, body, {new: true, runValidators: true});
       console.log("updatedPortfolio", updatedPortfolio)
       return res.status(200).json({updatedPortfolio});
     }
