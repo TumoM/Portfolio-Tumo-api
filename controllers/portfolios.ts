@@ -47,6 +47,25 @@ exports.createPortfolio = async (req:any, res:Response) => {
     }
   }
 
+  exports.deletePortfolio = async (req:Request, res:Response) => {
+    const {id} = req.params;
+
+    try{
+      const removedPortfolio = await Portfolio.findOneAndRemove({_id: id});
+      console.log("removedPortfolio", removedPortfolio)
+      if (removedPortfolio.id){
+        return res.status(200).json({_id: removedPortfolio.id});
+      }
+      else{
+        return res.status(422).json({message: `Resource not removed`});
+      }
+    }
+    catch(e){
+      console.log(e.message)
+      res.status(e.status || 422).json({message:e.message});
+    }
+  }
+
 exports.getPortfolioById = async (req:Request, res:Response) => {
     try {
         const portfolio = await Portfolio.findById(req.params.id);

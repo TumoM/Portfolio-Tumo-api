@@ -1,3 +1,5 @@
+import { Request, Response,  NextFunction} from "express"
+const config = require('../config');
 var jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
@@ -16,14 +18,13 @@ exports.checkJWT = jwt({
     algorithms: [ 'RS256' ]
   })
 
-  // exports.checkJwt = jwt({
-  //   secret: jwksRsa.expressJwtSecret({
-  //     cache: true,
-  //     rateLimit: true,
-  //     jwksRequestsPerMinute: 10,
-  //     jwksUri: 'https://dev-ie44sg37.eu.auth0.com/.well-known/jwks.json'
-  //   }),
-  //   audience: 'https://dev-ie44sg37.eu.auth0.com/api/v2/',
-  //   issuer: 'https://dev-pxt8cafa.eu.auth0.com/',
-  //   algorithms: ['RS256']
-  // });
+exports.checkRole = (role:string) => (req:any, res:Response, next:NextFunction) => {
+  const user = req.user;
+
+  if (user && user[config.AUTH0_NAMESPACE+'/roles'].includes(role)){
+    next()
+  }
+  else{
+    return res.status(401).send("You are not authorized to access this resource")
+  }
+}
