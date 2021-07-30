@@ -3,3 +3,4 @@ node_modules/
 
 .env
 config/dev.js
+config/dev.ts
