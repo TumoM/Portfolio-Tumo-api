@@ -9,7 +9,6 @@ const postsRoutes = require('./routes/posts');
 const portfoliosRoutes = require('./routes/portfolios');
 const bodyParser = require('body-parser');
 
-const port = process.env.PORT || 3001
 const dev = process.env.NODE_ENV !== 'production'
 
 const apiString = process.env.API_STRING || "/api/v1/"
@@ -21,7 +20,8 @@ app.use(`${apiString}posts`, postsRoutes)
 app.use(`${apiString}portfolios`, portfoliosRoutes)
 
 async function runServer() {
-      await require('./db').connect()
+      require('./db').connect()
+      const port = process.env.PORT || 3001
       try{   
             app.listen(port, (err:Error) => {
                   if (err) throw err
@@ -33,7 +33,6 @@ async function runServer() {
             console.log('Server has crashed?')
       }
 }
-
 try{
       runServer()
 }
