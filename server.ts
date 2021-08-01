@@ -7,6 +7,7 @@ const { connect } = require('./db')
 const example = require('./routes/example')
 const postsRoutes = require('./routes/posts');
 const portfoliosRoutes = require('./routes/portfolios');
+const projectsRoutes = require('./routes/projects');
 const bodyParser = require('body-parser');
 
 const dev = process.env.NODE_ENV !== 'production'
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(`${apiString}example`, example)
 app.use(`${apiString}posts`, postsRoutes)
 app.use(`${apiString}portfolios`, portfoliosRoutes)
+app.use(`${apiString}projects`, projectsRoutes)
 
 async function runServer() {
       require('./db').connect()

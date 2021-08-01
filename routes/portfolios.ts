@@ -1,9 +1,9 @@
-const express = require('express');
-const axios = require('axios')
-let router = express.Router()
-const { getPortfolios, getPortfolioById, createPortfolio, updatePortfolio, deletePortfolio} = require('../controllers/portfolios');
-const { withAuth } = require('../middleware/auth')
-const { checkJWT, getToken, checkRole } = require('../controllers/auth')
+import  express from 'express';
+import  axios from 'axios'
+let  router = express.Router()
+const { getPortfolios, getPortfolioById, createPortfolio, updatePortfolio, deletePortfolio } = require('../controllers/portfolios');
+let  { withAuth } = require('../middleware/auth')
+let  { checkJWT, getToken, checkRole } = require('../controllers/auth')
 
 // Get all portfolios
 router.get('', getPortfolios)
