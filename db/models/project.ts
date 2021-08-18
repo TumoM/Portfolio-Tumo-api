@@ -31,6 +31,16 @@ const projectSchema = new Schema({
         default: null,
         minLength: 1
         },
+    technologies: { 
+        type: [String], 
+        required: false, 
+        default: []
+        },
+    tags: { 
+        type: [String], 
+        required: false, 
+        default: []
+        },
     images: { 
         type: [imagesSchema], 
         required: false, 
