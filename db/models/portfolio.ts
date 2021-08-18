@@ -3,6 +3,11 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
+const imagesSchema = new Schema({
+    caption: String,
+    url: String
+})
+
 const portfolioSchema = new Schema({
     title: { 
         type: String, 
@@ -10,32 +15,36 @@ const portfolioSchema = new Schema({
         maxLength: 128,
         minLength: 1 
         },
-    company: { 
+    thumbnail: {
         type: String, 
-        required: true, 
-        maxLength: 64,
-        minLength: 1
-        },
-    companyWebsite: { 
-        type: String, 
-        required: true, 
-        maxLength: 128,
-        minLength: 1
-        },
-    location: { 
-        type: String, 
-        required: true ,
-        minLength: 1
-        },
-    jobTitle: { 
-        type: String, 
-        required: true ,
-        minLength: 1
+        required: false,
+        default: "https://via.placeholder.com/500x500",
         },
     description: {
         type: String, 
         required: true,
         minLength: 1 
+        },
+    portfolioLink: { 
+        type: String, 
+        required: false, 
+        default: null,
+        minLength: 1
+        },
+    technologies: { 
+        type: [String], 
+        required: false, 
+        default: []
+        },
+    tags: { 
+        type: [String], 
+        required: false, 
+        default: []
+        },
+    images: { 
+        type: [imagesSchema], 
+        required: false, 
+        default: []
         },
     startDate: {
         type: Date, 
@@ -46,7 +55,7 @@ const portfolioSchema = new Schema({
     },
     userId: {
         type: String, 
-        required:true,
+        required:false,
     },
     disableEndDate: {
         type: Boolean, 

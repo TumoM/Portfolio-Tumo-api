@@ -2,8 +2,8 @@
 import mongoose from 'mongoose';
 const config = require('../config/');
 
+require('./models/work');
 require('./models/portfolio');
-require('./models/project');
 
 exports.connect = () => {
     // console.log("URI:",config.DB_URI);

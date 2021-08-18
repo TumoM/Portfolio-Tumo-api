@@ -1,11 +1,8 @@
 import { Request, Response } from "express"
-const mongoose = require('mongoose');
+let mongoose = require('mongoose');
+// import mongoose from 'mongoose';
 const Portfolio = mongoose.model('Portfolio');
 // const Portfolio = mongoose.model('../db/models/portfolio');
-
-// import PortfolioApi from '@/lib/api/portfolios';
-// const { getAccessToken } = require('@auth0/nextjs-auth0')
-
 
 exports.getPortfolios = async (req:Request, res:Response) => {
     const portfolios = await Portfolio.find({});
@@ -15,12 +12,12 @@ exports.getPortfolios = async (req:Request, res:Response) => {
 exports.createPortfolio = async (req:any, res:Response) => {
     // const portfolios = await Portfolio.find({});
     const portfolioData = req.body;
-    const userId = req.user.sub
+    // const userId = req.user.sub
     console.log("New Portfolio Data:",portfolioData)
     const portfolio = new Portfolio(portfolioData);
     console.log("New Portfolio :",portfolio)
-    console.log("userId :",userId)
-    portfolio.userId = userId;
+    // console.log("userId :",userId)
+    // portfolio.userId = userId;
     try{
       
       const resPortfolio = await portfolio.save();
@@ -53,7 +50,7 @@ exports.createPortfolio = async (req:any, res:Response) => {
     try{
       const removedPortfolio = await Portfolio.findOneAndRemove({_id: id});
       console.log("removedPortfolio", removedPortfolio)
-      if (removedPortfolio.id){
+      if (removedPortfolio?.id){
         return res.status(200).json({_id: removedPortfolio.id});
       }
       else{
