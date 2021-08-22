@@ -5,7 +5,7 @@ const Portfolio = mongoose.model('Portfolio');
 // const Portfolio = mongoose.model('../db/models/portfolio');
 
 exports.getPortfolios = async (req:Request, res:Response) => {
-    const portfolios = await Portfolio.find({});
+    const portfolios = await Portfolio.find({}).sort({"startDate": -1});
     return res.json(portfolios);
   }
 

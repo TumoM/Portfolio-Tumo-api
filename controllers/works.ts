@@ -8,7 +8,7 @@ const Work = mongoose.model('Work');
 
 
 exports.getWorks = async (req:Request, res:Response) => {
-    const works = await Work.find({});
+    const works = await Work.find({}).sort({"startDate": -1});
     return res.json(works);
   }
 
